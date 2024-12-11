@@ -1,1 +1,0 @@
-grub-mkrescue /usr/lib/grub/x86_64-efi -o target/kernel.iso target/x86_64/iso

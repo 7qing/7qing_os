@@ -4,18 +4,20 @@ project(7qing_os VERSION 1.0
                   DESCRIPTION "my_first_system_kernel"
                   LANGUAGES C CXX ASM ASM_NASM)
 
-# 定义 NASM 汇编文件
-set(NASM_FILE example.asm)
+# 设置输出目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-# 定义 C++ 和 C 文件
-set(CPP_FILE main.cpp)
-set(C_FILE helper.c)
+# 添加子目录 src 
+add_subdirectory(src)
+# 定义 NASM 汇编文件路径
+set(NASM_FILE src/boot/boot.asm)
 
 # 定义 NASM 输出文件
-set(BIN_OUTPUT ${CMAKE_BINARY_DIR}/example.bin)
-set(LST_OUTPUT ${CMAKE_BINARY_DIR}/example.lst)
+set(BIN_OUTPUT ${CMAKE_BINARY_DIR}/boot.bin)
+set(LST_OUTPUT ${CMAKE_BINARY_DIR}/boot.lst)
 
-# 添加自定义命令来处理 NASM 文件
+# 自定义命令生成 NASM 文件
 add_custom_command(
     OUTPUT ${BIN_OUTPUT} ${LST_OUTPUT}
     COMMAND nasm -f bin -o ${BIN_OUTPUT} -l ${LST_OUTPUT} ${CMAKE_SOURCE_DIR}/${NASM_FILE}
@@ -23,18 +25,14 @@ add_custom_command(
     DEPENDS ${NASM_FILE}
 )
 
-# 添加 NASM 文件生成的目标
+# 定义目标以确保 NASM 文件生成
 add_custom_target(nasm_target DEPENDS ${BIN_OUTPUT} ${LST_OUTPUT})
 
-# 添加 C++ 可执行文件
-add_executable(main_cpp ${CPP_FILE})
+# 生成内核 ISO 文件的目标（示例）
+# add_custom_target(kernel_iso ALL
+#     COMMAND cp ${BIN_OUTPUT} ${CMAKE_BINARY_DIR}/kernel.iso
+#     COMMENT "Copying bootloader to kernel.iso"
+# )
 
-# 添加 C 文件并编译成库（可选）
-add_library(helper STATIC ${C_FILE})
-
-# 确保 main_cpp 的生成依赖于 NASM 文件生成
-add_dependencies(main_cpp nasm_target)
-
-# 链接 helper 库到 main_cpp 可执行文件
-target_link_libraries(main_cpp PRIVATE helper)# 定义 NASM 汇编文件
-set(NASM_FILE example.asm)
+# 定义依赖关系
+# add_dependencies(kernel_iso nasm_target)
