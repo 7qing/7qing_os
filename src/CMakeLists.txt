@@ -19,4 +19,4 @@ add_custom_command(
 add_custom_target(kernel_target DEPENDS ${KERNEL_BIN})
 
 # 将 kernel_target 作为构建依赖
-add_dependencies(nasm_target kernel_target)
+# add_dependencies(nasm_target kernel_target)
