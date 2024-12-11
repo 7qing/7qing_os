@@ -1,6 +1,9 @@
 ORG 0x7c00
 BITS 16
 
+CODE_SEG equ gdt_code - gdt_start
+DATA_SEG equ gdt_data - gdt_start
+
 _start:
     jmp short start
     nop
@@ -25,6 +28,8 @@ step2:
     mov  eax, cr0
     or eax, 0x1
     mov cr0, eax
+    ;jmp CODE_SEG:load32
+    jmp $
 
 ; GDT
 gdt_start:
@@ -54,21 +59,11 @@ gdt_end:
 
 
 gdt_descriptor:
-    dw gdt_end- start -1
+    dw gdt_end- gdt_start -1
     dd gdt_start
 
     
 
-print:
-    .loop:
-    lodsb
-    or al, al
-    jz .done
-    mov ah, 0eh
-    int 0x10
-    jmp .loop
-.done:
-    ret
 
 times 510- ($ - $$) db 0
 

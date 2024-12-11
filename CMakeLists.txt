@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.8)
 
 project(7qing_os VERSION 1.0
                   DESCRIPTION "my_first_system_kernel"
