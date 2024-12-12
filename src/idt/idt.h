@@ -3,7 +3,7 @@
 #include <stdint.h>
 struct idt_desc {
     /* data */
-    uint16_t offset;
+    uint16_t offset_1;
     uint16_t selector;
     uint8_t zero;
     uint8_t type_attr;
