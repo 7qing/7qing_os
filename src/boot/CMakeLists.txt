@@ -1,18 +1,15 @@
 # src/boot/CMakeLists.txt
 
-# 添加汇编文件作为目标
-set(NASM_FILE ${CMAKE_SOURCE_DIR}/src/boot/boot.asm)
-
-set(BIN_OUTPUT ${CMAKE_BINARY_DIR}/boot.bin)
-set(LST_OUTPUT ${CMAKE_BINARY_DIR}/boot.lst)
-
+# 编译引导加载程序 boot.bin
 add_custom_command(
-    OUTPUT ${BIN_OUTPUT} ${LST_OUTPUT}
-    COMMAND nasm -f bin -o ${BIN_OUTPUT} -l ${LST_OUTPUT} ${NASM_FILE}
-    COMMENT "Compiling ${NASM_FILE} with NASM"
+    OUTPUT ${BIN_DIR}/boot.bin
+    COMMAND ${NASM_EXECUTABLE} -f bin ${CMAKE_CURRENT_SOURCE_DIR}/boot.asm -o ${BIN_DIR}/boot.bin -l ${BIN_DIR}/boot.lst
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/boot.asm
+    COMMENT "Building boot.bin"
 )
 
+# 添加目标
 add_custom_target(
-    BootAsm ALL
-    DEPENDS ${BIN_OUTPUT} ${LST_OUTPUT}
+    boot ALL
+    DEPENDS ${BIN_DIR}/boot.bin ${BIN_DIR}/boot.lst
 )

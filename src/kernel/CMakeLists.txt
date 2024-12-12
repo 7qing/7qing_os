@@ -1,14 +1,13 @@
-# src/kernel/CMakeLists.txt
+# 编译内核 kernel.asm.o
+add_custom_command(
+    OUTPUT ${BUILD_DIR}/kernel.asm.o
+    COMMAND ${NASM_EXECUTABLE} -f elf ${CMAKE_CURRENT_SOURCE_DIR}/kernel.asm -o ${BUILD_DIR}/kernel.asm.o
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/kernel.asm
+    COMMENT "Building kernel.asm.o"
+)
 
-# 定义 C 源文件
-# set(KERNEL_C_SRC main.c)
-
-# # 编译为静态库
-# add_library(kernel_lib STATIC ${KERNEL_C_SRC})
-
-# # 设置 include 路径
-# target_include_directories(kernel_lib PUBLIC ${CMAKE_SOURCE_DIR}/src/kernel/include)
-
-# # 链接库文件到 kernel_target
-# add_dependencies(kernel_lib kernel_target)
-
+# 添加目标
+add_custom_target(
+    kernel ALL
+    DEPENDS ${BUILD_DIR}/kernel.asm.o
+)
