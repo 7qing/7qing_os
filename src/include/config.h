@@ -1,0 +1,6 @@
+#ifndef INCLUDE_CONFIG__H__
+#define INCLUDE_CONFIG__H__
+
+#define SEVEN_QING_OS_TOTAL_INTRRUPTS 512
+
+#endif
