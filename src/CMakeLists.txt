@@ -58,4 +58,3 @@ add_custom_target(
     COMMAND ${CMAKE_COMMAND} -E rm -rf ${BIN_DIR}/* ${BUILD_DIR}/*
     COMMENT "Cleaning up build files"
 )
-
