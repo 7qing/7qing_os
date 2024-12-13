@@ -20,6 +20,18 @@ load32:
     or al, 2
     out 0x92, al
 
+    ;remap the master pic
+    mov al, 00010001b
+    out 0x20, al ; master PIC
+
+    mov al,0x20 
+    out 0x21,al
+    
+    mov al, 00000001b
+    out 0x21, al
+
+
+    sti
     call kernel_main
 
     jmp $

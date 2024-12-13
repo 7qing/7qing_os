@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        "config.h": "c"
+        "config.h": "c",
+        "io.h": "c",
+        "memory.h": "c"
     },
     "python.autoComplete.extraPaths": [
         "/opt/ros/jazzy/lib/python/site-packages",
