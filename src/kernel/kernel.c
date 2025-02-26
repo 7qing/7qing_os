@@ -1,20 +1,33 @@
-#include "kernel.h"
+/*
+ * @Author: Yan Yixin 88801828+7qing@users.noreply.github.com
+ * @Date: 2025-02-22 14:07:07
+ * @LastEditors: Yan Yixin 88801828+7qing@users.noreply.github.com
+ * @LastEditTime: 2025-02-23 09:20:29
+ * @FilePath: /v2_7qing_os/src/kernel/main.c
+ * @Description: 这个是c语言启动的入口
+ */
 
-#include "idt/idt.h"
-#include "memory/heap/kheap.h"
-#include "memory/paging/paging.h"
+#include "boot/multiboot2.h"
+#include <stddef.h>
+#include <stdint.h>
 
-struct paging_4gb_chunk* kernel_chunk = 0;
 
-void kernel_main() {
-    kheap_init();
+/* frame buffer info */
+static uint32_t *framebuffer_base; /* 32 bit color */
+static uint32_t framebuffer_width;
+static uint32_t framebuffer_height;
 
-    idt_init();
 
-    kernel_chunk = paging_new_4gb(PAGING_IS_WRITEABLE | PAGING_IS_PRESENT |
-                                  PAGING_ACCESS_FROM_ALL);
-    paging_switch(paging_4gb_chunk_get_directory(kernel_chunk));
-    enable_paging();
 
-    enable_interrupts();
+
+
+extern void kernel_main(unsigned int magic, multiboot_uint8_t *mbi) {
+    while (1);
+   
+    
 }
+
+
+
+
+
