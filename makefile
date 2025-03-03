@@ -27,6 +27,7 @@ KERNEL_BIN := $(BIN_DIR)/kernel.bin
 OS_BIN := $(TARGET_DIR)/kernel.bin
 
 OBJS := ./build/boot/bootstrap.o ./build/boot/entry64.o ./build/kernel/kernel.o ./build/io/io.o
+
 all: $(OS_BIN)
 
 $(OS_BIN): $(KERNEL_BIN)
@@ -60,6 +61,9 @@ $(KERNEL_BIN): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_DIR)/io/io.S -o $(BUILD_DIR)/io/io.o
 clean:
 	rm -rf $(BUILD_DIR)/* $(BIN_DIR)/*
+
+o:
+	objdump -D bin/kernel.bin > bin/res.asm
 	
 
 

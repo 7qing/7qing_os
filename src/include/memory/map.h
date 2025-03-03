@@ -11,7 +11,7 @@ typedef enum __memm_page_size {
     MEMM_PAGE_SIZE_1G = 262144,  // 262144个4KB页大小
 } memm_page_size;
 
-extern u64 PML4[512];
+extern uint64_t PML4[512];
 
 #define MEMM_PAGE_TABLE_FLAGS_AREA ((u64)0xfff)
 

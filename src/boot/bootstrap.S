@@ -135,7 +135,7 @@ halt:
     boot_stack:
         .space 0x1000
     boot_stack_top:
-
+        
     .align 0x1000
     .globl boot_PML4,boot_PDPT0,boot_PD0
     boot_PML4:
