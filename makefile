@@ -26,9 +26,9 @@ KERNEL_BIN := $(BIN_DIR)/kernel.bin
 # 目标输出文件，指定最终输出文件要复制到的目标路径
 OS_BIN := $(TARGET_DIR)/kernel.bin
 
-OBJS := ./build/boot/bootstrap.o ./build/boot/entry64.o ./build/kernel/kernel.o
+OBJS := ./build/boot/bootstrap.o ./build/boot/entry64.o ./build/kernel/kernel.o ./build/io/io.o
 all: $(OS_BIN)
-	
+
 $(OS_BIN): $(KERNEL_BIN)
 	@echo "[CP]kernel.bin -> $(OS_BIN)"
 	rm -f $(OS_BIN)
@@ -54,6 +54,10 @@ $(KERNEL_BIN): $(OBJS)
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_DIR)/kernel/kernel.c -o $(BUILD_DIR)/kernel/kernel.o
 
+./build/io/io.o: ./src/io/io.S
+	@echo "[AS] $< -> $@"
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRC_DIR)/io/io.S -o $(BUILD_DIR)/io/io.o
 clean:
 	rm -rf $(BUILD_DIR)/* $(BIN_DIR)/*
 	
