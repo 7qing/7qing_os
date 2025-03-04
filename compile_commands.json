@@ -13,11 +13,74 @@
       "src/include",
       "-c",
       "-o",
+      "./build/boot/bootstrap.o",
+      "src/boot/bootstrap.S"
+    ],
+    "directory": "/home/yyx/7qing_os",
+    "file": "/home/yyx/7qing_os/src/boot/bootstrap.S",
+    "output": "/home/yyx/7qing_os/build/boot/bootstrap.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-m64",
+      "--pipe",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-stack-protector",
+      "-mcmodel=large",
+      "-fno-asynchronous-unwind-tables",
+      "-I",
+      "src/include",
+      "-c",
+      "-o",
+      "./build/boot/entry64.o",
+      "src/boot/entry64.S"
+    ],
+    "directory": "/home/yyx/7qing_os",
+    "file": "/home/yyx/7qing_os/src/boot/entry64.S",
+    "output": "/home/yyx/7qing_os/build/boot/entry64.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-m64",
+      "--pipe",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-stack-protector",
+      "-mcmodel=large",
+      "-fno-asynchronous-unwind-tables",
+      "-I",
+      "src/include",
+      "-c",
+      "-o",
       "./build/kernel/kernel.o",
       "src/kernel/kernel.c"
     ],
-    "directory": "/home/yyx/v2_7qing_os",
-    "file": "/home/yyx/v2_7qing_os/src/kernel/kernel.c",
-    "output": "/home/yyx/v2_7qing_os/build/kernel/kernel.o"
+    "directory": "/home/yyx/7qing_os",
+    "file": "/home/yyx/7qing_os/src/kernel/kernel.c",
+    "output": "/home/yyx/7qing_os/build/kernel/kernel.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-m64",
+      "--pipe",
+      "-ffreestanding",
+      "-fno-pie",
+      "-fno-stack-protector",
+      "-mcmodel=large",
+      "-fno-asynchronous-unwind-tables",
+      "-I",
+      "src/include",
+      "-c",
+      "-o",
+      "./build/io/io.o",
+      "src/io/io.S"
+    ],
+    "directory": "/home/yyx/7qing_os",
+    "file": "/home/yyx/7qing_os/src/io/io.S",
+    "output": "/home/yyx/7qing_os/build/io/io.o"
   }
 ]

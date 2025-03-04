@@ -8,33 +8,32 @@ multiboot_header:
         .long   0
         .long   multiboot_header_end - multiboot_header
         .long   -(MULTIBOOT2_HEADER_MAGIC + multiboot_header_end - multiboot_header)
-
+.align 8
 tag_entry:
-    .align 8
     .short MULTIBOOT_HEADER_TAG_ENTRY_ADDRESS
     .short 0
     .long 12
     .long bootstrap
-
+.align 8
 tag_frame_buffer:
-    .align 8
     .short MULTIBOOT_HEADER_TAG_FRAMEBUFFER
     .short 0
     .long 20
-    .long 1024
-    .long 768
+    .long 1920
+    .long 1080
     .long 32
+.align 8
 tag_information_request:
-    .align 8
     .short MULTIBOOT_HEADER_TAG_INFORMATION_REQUEST
-    .short tag_information_request_tag_end - tag_information_request
+    .short 0
+    .long tag_information_request_tag_end - tag_information_request
     .long 4
     .long 1
     .long 8
     .long 12
 tag_information_request_tag_end:
+.align 8
 tags_end:
-    .align 8
     .short  MULTIBOOT_HEADER_TAG_END
     .short  0
     .long   8
